@@ -213,6 +213,27 @@
         background-color: transparent;
     }
     
+    /* Table Styles */
+    /* ------------------------------------------------ */
+    /* HERE IS WHERE THE FONT SIZE IS CHANGED (这里修改了字体大小) */
+    .table th {
+        vertical-align: middle;
+        font-size: 0.85rem; /* Reduced font size for headers */
+    }
+    .table td {
+        vertical-align: middle;
+        font-size: 0.85rem; /* Reduced font size for content */
+    }
+    /* ------------------------------------------------ */
+    
+    .best-score {
+        font-weight: bold;
+        /* background-color: #e6fffa; */
+    }
+    .second-best {
+        text-decoration: underline;
+    }
+    
   </style>
 </head>
 <body>
@@ -258,7 +279,6 @@
             <span class="affiliation-block"><sup>1</sup>AGI Lab, Westlake University</span>
             <span class="affiliation-block"><sup>2</sup>University of Electronic Science and Technology of China</span>
             <span class="affiliation-block"><sup>3</sup>Hangzhou Dianzi University</span>
-            <br>
             <span class="affiliation-block"><sup>4</sup>Renmin University of China</span>
             <span class="affiliation-block"><sup>5</sup>Nanyang Technological University</span>
           </div>
@@ -344,7 +364,7 @@
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_creature_robot_dinosour_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
                     
                     <!-- Row 2 Items (You can duplicate row 1 items here or add new ones to make it dense) -->
-                    <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_creature_robot_monster_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
+                    <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_creature_rock_monster_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_humanoid_block_robot_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_humanoid_dragonborn_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_humanoid_dwarf_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
@@ -356,13 +376,20 @@
                     <!-- Row 3 Items -->
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_misc_television_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_bulldozer_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <!-- <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_cart_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_excavator_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div> -->
-                </div>
+            </div>
+        </div>
+  
+            <!-- New Caption Below Gallery -->
+            <div class="content has-text-centered" style="margin-top: 15px;">
+                <p class="is-size-6">
+                  <b>Fast3Dcache</b> is a training-free framework that accelerates 3D geometry synthesis by leveraging voxel stabilization patterns, achieving significant speedup with negligible quality loss.
+                </p>
             </div>
         </div>
     </div>
 </section>
+
+
 
 <!-- Abstract -->
 <section class="section">
@@ -472,7 +499,7 @@
 
 
       <!-- Part 2: TeaCache + Fast3Dcache -->
-      <h3 class="subsection-title">1. Fast3Dcache (&tau; = 3)</h3>
+      <h3 class="subsection-title">1. Fast3Dcache with &tau; = 3 (speedup ↑27.12%; FLOPs ↓54.83%)</h3>
             <div class="columns is-multiline is-centered">
         
         <!-- Case 1 -->
@@ -779,45 +806,168 @@
         </div>
       </div> -->
       
+      
       <!-- Quantitative Table -->
-      <div class="columns is-centered" style="margin-top: 40px;">
+      <div class="columns is-centered" style="margin-top: 30px;">
         <div class="column is-10">
             <div class="box">
                 <h4 class="title is-5 has-text-centered">Quantitative Performance Metrics</h4>
-                <table class="table is-fullwidth is-striped is-hoverable">
-                    <thead>
-                        <tr>
-                            <th>Method</th>
-                            <th>Throughput (iter/s) ↑</th>
-                            <th>FLOPs (T) ↓</th>
-                            <th>CD ↓</th>
-                            <th>F-Score ↑</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>TRELLIS (Vanilla)</td>
-                            <td>0.5055</td>
-                            <td>244.2</td>
-                            <td>0.0686</td>
-                            <td>54.82</td>
-                        </tr>
-                        <tr>
-                            <td>RAS (Sample 25%)</td>
-                            <td>0.6337</td>
-                            <td>125.1</td>
-                            <td>0.0867</td>
-                            <td>40.27</td>
-                        </tr>
-                        <tr style="background-color: #f0f7ff; font-weight: bold;">
-                            <td>Fast3Dcache (Ours, τ=8)</td>
-                            <td>0.6426 (+27%)</td>
-                            <td>110.3 (-54%)</td>
-                            <td>0.0703</td>
-                            <td>53.75</td>
-                        </tr>
-                    </tbody>
-                </table>
+                
+                <h5 class="subtitle is-6 has-text-centered" style="margin-top: 15px; margin-bottom: 10px;">
+                    <b>Table 1.</b> Quantitative comparison on TRELLIS and DSO frameworks.
+                </h5>
+                <div class="table-container">
+                    <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Frameworks</th>
+                                <th>Acceleration Methods</th>
+                                <th>Throughput (iter/s) ↑</th>
+                                <th>FLOPs (T) ↓</th>
+                                <th>CD ↓</th>
+                                <th>F-Score ↑</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="6" style="vertical-align: middle;"><b>TRELLIS</b></td>
+                                <td>vanilla</td>
+                                <td>0.5055</td>
+                                <td>244.2</td>
+                                <td>0.0686</td>
+                                <td>54.8244</td>
+                            </tr>
+                            <tr>
+                                <td>RAS (sample ratio 25%)</td>
+                                <td>0.6337</td>
+                                <td>125.1</td>
+                                <td>0.0867</td>
+                                <td>40.2769</td>
+                            </tr>
+                            <tr>
+                                <td>RAS (sample ratio 12.5%)</td>
+                                <td>0.6177</td>
+                                <td>125.8</td>
+                                <td>0.0846</td>
+                                <td>43.9622</td>
+                            </tr>
+                            <tr>
+                                <td>Fast3Dcache (τ = 3)</td>
+                                <td>0.5850</td>
+                                <td>142.4</td>
+                                <td class="best-score">0.0697</td>
+                                <td class="best-score">54.0900</td>
+                            </tr>
+                            <tr>
+                                <td>Fast3Dcache (τ = 5)</td>
+                                <td>0.6344</td>
+                                <td>121.3</td>
+                                <td>0.0712</td>
+                                <td>53.5003</td>
+                            </tr>
+                            <tr>
+                                <td>Fast3Dcache (τ = 8)</td>
+                                <td class="best-score">0.6426</td>
+                                <td class="best-score">110.3</td>
+                                <td>0.0703</td>
+                                <td>53.7528</td>
+                            </tr>
+                            <!-- DSO Section -->
+                            <tr>
+                                <td rowspan="6" style="vertical-align: middle;"><b>DSO</b></td>
+                                <td>vanilla</td>
+                                <td>0.3496</td>
+                                <td>244.2</td>
+                                <td>0.0687</td>
+                                <td>54.8350</td>
+                            </tr>
+                            <tr>
+                                <td>RAS (sample ratio 25%)</td>
+                                <td class="best-score">0.4341</td>
+                                <td>125.0</td>
+                                <td>0.0805</td>
+                                <td>46.4990</td>
+                            </tr>
+                            <tr>
+                                <td>RAS (sample ratio 12.5%)</td>
+                                <td>0.4047</td>
+                                <td>125.8</td>
+                                <td>0.0820</td>
+                                <td>45.5584</td>
+                            </tr>
+                            <tr>
+                                <td>Fast3Dcache (τ = 3)</td>
+                                <td>0.3955</td>
+                                <td>146.5</td>
+                                <td class="best-score">0.0698</td>
+                                <td class="best-score">54.0451</td>
+                            </tr>
+                            <tr>
+                                <td>Fast3Dcache (τ = 5)</td>
+                                <td>0.4114</td>
+                                <td>126.0</td>
+                                <td>0.0711</td>
+                                <td>53.5506</td>
+                            </tr>
+                            <tr>
+                                <td>Fast3Dcache (τ = 8)</td>
+                                <td>0.4071</td>
+                                <td class="best-score">115.4</td>
+                                <td>0.0704</td>
+                                <td>53.5487</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="subtitle is-6 has-text-centered" style="margin-top: 30px; margin-bottom: 10px;">
+                    <b>Table 2.</b> Full quantitative results of Fast3Dcache combined with a modality-agnostic method.
+                </h5>
+                <div class="table-container">
+                    <table class="table is-fullwidth is-striped is-hoverable is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Throughput↑ (iters/s)</th>
+                                <th>CD↓</th>
+                                <th>F-Score↑</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Vanilla</td>
+                                <td>0.51</td>
+                                <td>0.0686</td>
+                                <td>54.8244</td>
+                            </tr>
+                            <tr>
+                                <td>Teacache</td>
+                                <td>1.45 (2.84×)</td>
+                                <td>0.0705</td>
+                                <td>53.5567</td>
+                            </tr>
+                            <tr style="background-color: #f9f9f9;">
+                                <td>Teacache + ours</td>
+                                <td class="best-score">1.74 (3.41×)</td>
+                                <td class="best-score">0.0701</td>
+                                <td class="best-score">53.9420</td>
+                            </tr>
+                            <tr>
+                                <td>Easycache</td>
+                                <td>1.95 (3.82×)</td>
+                                <td class="best-score">0.0692</td>
+                                <td>54.5051</td>
+                            </tr>
+                            <tr style="background-color: #f9f9f9;">
+                                <td>Easycache + ours</td>
+                                <td class="best-score">5.27 (10.33×)</td>
+                                <td>0.0694</td>
+                                <td class="best-score">54.7722</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
       </div>
