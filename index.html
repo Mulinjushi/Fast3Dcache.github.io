@@ -175,43 +175,35 @@
         font-weight: 600;
     }
 
-    /* --- Marquee Gallery Styles --- */
-    .marquee-container {
+    /* --- Gallery Styles (Updated to Grid) --- */
+    .gallery-container {
         width: 100%;
-        overflow: hidden;
         background: #fff;
         padding: 20px 0;
     }
 
-    .marquee-content {
-        display: flex;
+    .gallery-content {
+        /* 使用 Grid 布局，自动填充列 */
+        display: grid;
+        /* 每一列最小宽度 140px，最大占满剩余空间。这样屏幕宽时列多，窄时列少 */
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 20px;
-        width: max-content;
-        /* Optional: Animation for auto-scrolling if desired, 
-           but static grid is also fine if it fits. 
-           Here we use a simple flex layout that wraps or scrolls. */
-        flex-wrap: wrap; 
-        justify-content: center;
+        width: 100%;
+        justify-items: center;
     }
-    
-    /* If you want strict single-line scrolling, use this instead of flex-wrap: wrap */
-    /* .marquee-content {
-        display: flex;
-        animation: scroll 40s linear infinite;
-    }
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-    }
-    */
 
     .gallery-item {
-        width: 120px;
-        height: 120px;
-        background: transparent;
+        width: 100%;
+        aspect-ratio: 1 / 1; /* 保持正方形 */
+        background: #fafafa;
         border-radius: 8px;
         /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); */
-        flex-shrink: 0;
+        transition: transform 0.2s;
+    }
+    
+    .gallery-item:hover {
+        transform: scale(1.05);
+        z-index: 10;
     }
 
     .gallery-item model-viewer {
@@ -331,12 +323,12 @@
   </div>
 </section>
 
-<!-- Gallery Section (Moved to top) -->
+<!-- Gallery Section (Fixed: Now using Grid Layout) -->
 <section class="hero is-light is-small">
     <div class="hero-body" style="padding-top: 20px; padding-bottom: 20px;">
         <div class="container is-max-desktop">
-            <div class="marquee-container">
-                <div class="marquee-content">
+            <div class="gallery-container">
+                <div class="gallery-content">
                     <!-- Placeholders for Gallery Items. 
                          Set auto-rotate, remove camera-controls for pure display. 
                          Adjust rotation-per-second for speed. -->
@@ -364,12 +356,8 @@
                     <!-- Row 3 Items -->
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_misc_television_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
                     <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_bulldozer_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_cart_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_excavator_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <!-- <div class="gallery-item"><model-viewer src="PATH_TO_YOUR_GALLERY_GLB_21.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <div class="gallery-item"><model-viewer src="PATH_TO_YOUR_GALLERY_GLB_22.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <div class="gallery-item"><model-viewer src="PATH_TO_YOUR_GALLERY_GLB_23.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
-                    <div class="gallery-item"><model-viewer src="PATH_TO_YOUR_GALLERY_GLB_24.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div> -->
+                    <!-- <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_cart_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div>
+                    <div class="gallery-item"><model-viewer src="./outputs_tau3/typical_vehicle_excavator_demo_trellis.glb" auto-rotate rotation-per-second="30deg" shadow-intensity="1" disable-zoom disable-tap></model-viewer></div> -->
                 </div>
             </div>
         </div>
